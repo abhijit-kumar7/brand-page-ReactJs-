@@ -1,17 +1,25 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import Navbar from './components/Navbar'
-import { counterContext } from './context/context'
-// ---------kkk
-function App() {
+
+function App301() {
   const [count, setCount] = useState(0)
+  const a = useRef(0)
+
+  const abc=()=>{
+    a.current=a.current+1;
+  }
+
+  useEffect(() => {
+    a.current = a.current + 1
+    console.log(`rerendering and the value of a is ${a.current}..`)
+    console.log(count); 
+  });
+
 
   return (
     <>
-    <counterContext.Provider value={{count, setCount}}>
-    <Navbar/>
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -29,13 +37,11 @@ function App() {
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
       </div>
-
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-      </counterContext.Provider>
     </>
   )
 }
 
-export default App
+export default App301
